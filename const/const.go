@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"log"
 )
 
-func main(){
+func main() {
 	const nama = "John Doe"
 	fmt.Println(nama)
 
