@@ -13,3 +13,7 @@ Pembelajaran dasar bahasa golang menggunakan referensi dari [Noval Agung](https:
 - Operator
 - Perulangan
 - Slice
+
+### Tools
+
+- Go 1.19.2
