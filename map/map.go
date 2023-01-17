@@ -10,7 +10,7 @@ func main() {
 
 	// Inisialisasi map
 	// map[tipe key]tipe value
-	var foods map[string]int{}
+	var foods map[string]int
 	// insialisasi nilai dalam map
 	foods = map[string]int{} // biar gak nil
 
@@ -23,5 +23,19 @@ func main() {
 	foods["Grape Juice"] = 3
 
 	fmt.Println(foods["Burgir"])
+	for food, price := range foods {
+		fmt.Printf("Menu: %s, price: %d\n", food, price)
+	}
+
+	// Cara inisialisasi map 2
+	var drinks = map[string]int{
+		"Apple Juice":  3,
+		"Black Coffee": 6,
+		"Cider":        2,
+		"Dr. Peppers":  4,
+		"Fizzy Soda":   5,
+	}
+
+	fmt.Println("Drinks", drinks)
 
 }
