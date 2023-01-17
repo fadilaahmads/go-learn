@@ -30,8 +30,16 @@ func main() {
 	sVeggies := veggies[3:6]
 	fmt.Println("Slice from slice veggies:", sVeggies)
 
-	// Panjang slice
-	sliceSize := len(veggies)
+	newVeggies := veggies[1:4]
+	// jumlah elemen slice
+	sliceSize := len(newVeggies)
 	fmt.Println("Slice Size:", sliceSize)
+
+	// kapasitas slice
+	sliceCapacity := cap(newVeggies)
+	fmt.Println("Slice cap:", sliceCapacity)
+
+	newVeggies = append(newVeggies, "Brocoli")
+	fmt.Println(newVeggies)
 
 }
