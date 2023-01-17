@@ -15,4 +15,7 @@ func main() {
 	fmt.Println("Nilai varBiasa:", varBiasa)
 	fmt.Println("Alamat memori varBiasa:", varPointer)
 
+	// dereference variabel
+	fmt.Println("Dereference varPointer:", *varPointer)
+
 }
