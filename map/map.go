@@ -24,7 +24,7 @@ func main() {
 
 	fmt.Println(foods["Burgir"])
 	for food, price := range foods {
-		fmt.Printf("Menu: %s, price: %d\n", food, price)
+		fmt.Println("Menu:", food, ",Price:", price)
 	}
 
 	// Cara inisialisasi map 2
@@ -38,4 +38,16 @@ func main() {
 
 	fmt.Println("Drinks", drinks)
 
+	// Delete items in map
+	// delete(nam map, key)
+	delete(foods, "Edamame")
+	fmt.Println(foods)
+
+	// Check existing key
+	var value, isExist = drinks["Cider"]
+	if isExist {
+		fmt.Println("Price:", value)
+	} else {
+		fmt.Println("None")
+	}
 }
