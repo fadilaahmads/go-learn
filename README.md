@@ -17,3 +17,4 @@ Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogr
 ### Tools
 
 - Go 1.19.2
+- Visual Studio Code
