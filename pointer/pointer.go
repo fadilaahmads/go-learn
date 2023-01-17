@@ -2,6 +2,16 @@ package main
 
 import "fmt"
 
+func ChangeWitoutPointer(ori int, change int) int {
+	ori = change
+	return ori
+}
+
+func ChangeWithPointer(ori *int, change int) int {
+	ori = &change
+	return *ori
+}
+
 func main() {
 	// Pointer adalah reference atau alamat memori.
 	// Variabel pointer berarti variabel yang berisi alamat memori suatu nilai.
@@ -18,4 +28,11 @@ func main() {
 	// dereference variabel
 	fmt.Println("Dereference varPointer:", *varPointer)
 
+	// Pointer as parameter
+	num := 9
+	fmt.Println("Num before:", num)
+	noPointer := ChangeWitoutPointer(num, 5)
+	fmt.Println("Num after:", noPointer)
+	withPointer := ChangeWithPointer(&num, 5)
+	fmt.Println("Num after:", withPointer)
 }
