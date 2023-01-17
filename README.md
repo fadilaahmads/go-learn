@@ -2,16 +2,15 @@
 
 ### Materi
 
-Pembelajaran dasar bahasa golang menggunakan referensi dari [Noval Agung](https://dasarpemrogramangolang.novalagung.com/)
+Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogramangolang.novalagung.com/)
 
 ### Topik yang telah dipelajari
 
 - Array
 - Constant
+- Loops
 - Map
-- Perulangan
 - Operator
-- Perulangan
 - Slice
 
 ### Tools
