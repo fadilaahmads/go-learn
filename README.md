@@ -6,6 +6,9 @@ Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogr
 
 - Array
 - Constant
+- Function
+  - Closure
+  - Variadic
 - Loops
 - Map
 - Operator
