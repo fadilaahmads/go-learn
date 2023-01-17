@@ -8,6 +8,8 @@ Pembelajaran dasar bahasa golang menggunakan referensi dari [Noval Agung](https:
 
 - Array
 - Constant
+- Map
 - Perulangan
 - Operator
+- Perulangan
 - Slice
