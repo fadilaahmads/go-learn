@@ -42,4 +42,12 @@ func main() {
 	newVeggies = append(newVeggies, "Brocoli")
 	fmt.Println(newVeggies)
 
+	// Copy menduplikasi sesuai dari kapasitas slice destinasi
+	dest := make([]string, 5)
+	src := veggies
+
+	copy(dest, src)
+	fmt.Println("source:", src)
+	fmt.Println("destination:", dest)
+
 }
