@@ -11,8 +11,11 @@ Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogr
   - Variadic
 - Loops
 - Map
+- Method
 - Operator
+- Pointer
 - Slice
+- Struct
 
 ### Tools
 
