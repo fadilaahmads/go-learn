@@ -1,13 +1,15 @@
 package main
 
+import "fmt"
+
 type Animal struct {
 	species string
 	age     int
 }
 
 type Dog struct {
-	Animal
-	name string
+	animal Animal
+	name   string
 }
 
 func (d Dog) Bark() string {
@@ -25,5 +27,9 @@ func main() {
 	// Keunggulan method dibanding fungsi biasa adalah memiliki akses ke property struct
 	// hingga level private (level akses nantinya akan dibahas lebih detail pada chapter selanjutnya).
 	// Dan juga, dengan menggunakan method sebuah proses bisa di-enkapsulasi dengan baik.
+
+	var dog1 = Dog{animal: Animal{"husky", 8}, name: "Buff"}
+	fmt.Println(dog1.Bark())
+	fmt.Println(dog1.animal.getAge())
 
 }
