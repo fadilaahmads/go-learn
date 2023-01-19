@@ -9,6 +9,7 @@ Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogr
 - Function
   - Closure
   - Variadic
+- Interface
 - Loops
 - Map
 - Method
