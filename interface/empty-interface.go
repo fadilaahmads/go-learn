@@ -38,4 +38,19 @@ func main() {
 	for _, food := range secret.([]string) {
 		fmt.Println(food)
 	}
+
+	// =======================================
+	// Slice, map, and interface{} combination
+	// =======================================
+	// tipe data tersebut bisa menjadi alternatif tipe slice struct.
+	var person = []map[string]interface{}{
+		{"name": "Wick", "age": 23},
+		{"name": "Ethan", "age": 23},
+		{"name": "Bourne", "age": 22},
+	}
+
+	for _, each := range person {
+		fmt.Println(each["name"], "age is", each["age"])
+	}
+
 }
