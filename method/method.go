@@ -20,6 +20,14 @@ func (a Animal) getAge() int {
 	age := a.age
 	return age
 }
+func (n Dog) changeNameNoPointer(name string) string {
+	n.name = name
+	return n.name
+}
+func (n *Dog) changeNameWithPointer(name string) string {
+	n.name = name
+	return n.name
+}
 
 func main() {
 	// Method adalah fungsi yang menempel pada type (bisa struct atau tipe data lainnya).
@@ -31,5 +39,10 @@ func main() {
 	var dog1 = Dog{animal: Animal{"husky", 8}, name: "Buff"}
 	fmt.Println(dog1.Bark())
 	fmt.Println(dog1.animal.getAge())
+	fmt.Println("Dogo original name:", dog1.name)
+	dog1.changeNameNoPointer("Hamilton")
+	fmt.Println("Change name without pointer:", dog1.name)
+	dog1.changeNameWithPointer("Kin")
+	fmt.Println("Change name with pointer:", dog1.name)
 
 }
