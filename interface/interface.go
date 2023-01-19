@@ -1,6 +1,9 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 // Interface definition
 type hitung interface {
@@ -44,5 +47,23 @@ func main() {
 	// Interface merupakan tipe data. Nilai objek bertipe interface zero value-nya adalah nil.
 	// Interface mulai bisa digunakan jika sudah ada isinya, yaitu objek konkret yang memiliki definisi method
 	// minimal sama dengan yang ada di interface-nya
+
+	var bangunDatar hitung
+
+	bangunDatar = persegi{10}
+	fmt.Println("=== Persegi ===")
+	fmt.Println(bangunDatar.keliling())
+	fmt.Println(bangunDatar.luas())
+
+	bangunDatar = lingkaran{14}
+	fmt.Println("=== Lingkaran ===")
+	fmt.Println(bangunDatar.keliling())
+	fmt.Println(bangunDatar.luas())
+	// Untuk mengakses method yang tidak ter-definisi di interface,
+	// variabel-nya harus di-casting terlebih dahulu ke tipe asli variabel konkritnya (pada kasus ini tipenya lingkaran),
+	// setelahnya method akan bisa diakses.
+	// cara casting menuliskan nama tipe tujuan dalam kurung,
+	// ditempatkan setelah nama interface dengan menggunakan notasi titik (seperti cara mengakses property, hanya saja ada tanda kurung nya).
+	fmt.Println(bangunDatar.(lingkaran).jarijari())
 
 }
