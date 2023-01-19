@@ -41,6 +41,10 @@ func (p persegi) keliling() float64 {
 	return p.sisi * 4
 }
 
+func (p persegi) volumeKubus(tinggi float64) float64 {
+	return p.luas() * tinggi
+}
+
 func main() {
 	// Interface adalah kumpulan definisi method yang tidak memiliki isi (hanya definisi saja),
 	// yang dibungkus dengan nama tertentu.
@@ -52,18 +56,19 @@ func main() {
 
 	bangunDatar = persegi{10}
 	fmt.Println("=== Persegi ===")
-	fmt.Println(bangunDatar.keliling())
-	fmt.Println(bangunDatar.luas())
+	fmt.Println("Persegi keliling:", bangunDatar.keliling())
+	fmt.Println("Persegi luas:", bangunDatar.luas())
+	fmt.Println("Persegi volume:", bangunDatar.(persegi).volumeKubus(5))
 
 	bangunDatar = lingkaran{14}
 	fmt.Println("=== Lingkaran ===")
-	fmt.Println(bangunDatar.keliling())
-	fmt.Println(bangunDatar.luas())
+	fmt.Println("Lingkaran keliling", bangunDatar.keliling())
+	fmt.Println("Lingkaran luas:", bangunDatar.luas())
 	// Untuk mengakses method yang tidak ter-definisi di interface,
 	// variabel-nya harus di-casting terlebih dahulu ke tipe asli variabel konkritnya (pada kasus ini tipenya lingkaran),
 	// setelahnya method akan bisa diakses.
 	// cara casting menuliskan nama tipe tujuan dalam kurung,
 	// ditempatkan setelah nama interface dengan menggunakan notasi titik (seperti cara mengakses property, hanya saja ada tanda kurung nya).
-	fmt.Println(bangunDatar.(lingkaran).jarijari())
+	fmt.Println("Lingkaran jari-jari:", bangunDatar.(lingkaran).jarijari())
 
 }
