@@ -12,6 +12,7 @@ func Loop1(num int, message string) {
 }
 
 func main() {
+	// Specify the number of logical processor cores
 	runtime.GOMAXPROCS(2)
 	go Loop1(10, "With goroutine")
 	Loop1(10, "Without goroutine")
