@@ -46,6 +46,8 @@ func main() {
 	// ====================
 	// Variabel channel bisa di-pass ke fungsi lain sebagai parameter.
 	// Cukup tambahkan keyword chan pada deklarasi parameter agar operasi pass channel variabel bisa dilakukan.
+	// Passing data bertipe channel lewat parameter sifatnya pass by reference,
+	// yang di transferkan adalah pointer datanya, bukan nilai datanya.
 	for _, each := range []string{"wick", "hunt", "bourne"} {
 		go func(who string) {
 			var data = fmt.Sprintf("hello %s", who)
