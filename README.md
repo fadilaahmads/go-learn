@@ -5,6 +5,7 @@ Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogr
 ### Topics i've learned
 
 - Array
+- Channel
 - Constant
 - Function
   - Closure
