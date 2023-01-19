@@ -9,6 +9,7 @@ Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogr
 - Function
   - Closure
   - Variadic
+- Goroutine
 - Interface
   - Interface
   - Empty Interface
