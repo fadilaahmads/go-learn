@@ -5,7 +5,14 @@ import (
 	"runtime"
 )
 
+func printMessage(what chan string) {
+	fmt.Println(<-what)
+}
+
 func main() {
+	// =======
+	// channel
+	// =======
 	// hannel digunakan untuk menghubungkan goroutine satu dengan goroutine lain.
 	// Mekanisme yang dilakukan adalah serah-terima data lewat channel tersebut.
 	// Dalam komunikasinya, sebuah channel difungsikan sebagai pengirim di sebuah goroutine,
@@ -34,4 +41,18 @@ func main() {
 	var message3 = <-message
 	fmt.Println(message3)
 
+	// ====================
+	// Channel as parameter
+	// ====================
+	// Variabel channel bisa di-pass ke fungsi lain sebagai parameter.
+	// Cukup tambahkan keyword chan pada deklarasi parameter agar operasi pass channel variabel bisa dilakukan.
+	for _, each := range []string{"wick", "hunt", "bourne"} {
+		go func(who string) {
+			var data = fmt.Sprintf("hello %s", who)
+			message <- data
+		}(each)
+	}
+	for i := 0; i < 3; i++ {
+		printMessage(message)
+	}
 }
