@@ -1,0 +1,4 @@
+#. gitignore
+
+# Exclude ELF executables
+*.elf
