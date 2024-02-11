@@ -1,7 +1,7 @@
 package main
 
 import (
-  "fmt"
+	"fmt"
 )
 
 func main(){
@@ -30,6 +30,20 @@ func main(){
 
   for i:=0; i<len(warna); i++{
     fmt.Println("Warna: ", warna[i])
+  }
+  
+  // Multidimensional array
+  var goodies = [2][3]string{{"Apple", "Biscuit", "Cake"},{"Diet Coke", "Energen", "Fanta"}}
+  for i:= 0; i<len(goodies); i++{
+    for j:= 0; j<len(goodies[i]); j++{
+      fmt.Println("goodies: ", goodies[i][j])
+    }
+  }
+  var numbers = [2][5]int{odds, even}
+  for _,row := range numbers {
+    for _, value := range row {
+      fmt.Println("Numbers: ", value)
+    }
   }
 
   // Declaring slice
