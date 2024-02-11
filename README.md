@@ -1,6 +1,8 @@
 # Belajar Golang
 
-Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogramangolang.novalagung.com/)
+Learn Golang Fundamental using reference from:
+- [GoDev](https://go.dev/tour/welcome/1)
+- [Noval Agung](https://dasarpemrogramangolang.novalagung.com/)
 
 ### Topics i've learned
 
@@ -24,5 +26,5 @@ Learn Golang Fundamental using reference from [Noval Agung](https://dasarpemrogr
 
 ### Tools
 
-- Go 1.19.2
-- Visual Studio Code
+- Go 1.21.6
+- Neovim
