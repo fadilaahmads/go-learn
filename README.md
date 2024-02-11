@@ -27,4 +27,7 @@ Learn Golang Fundamental using reference from:
 ### Tools
 
 - Go 1.21.6
-- Neovim
+- Neovim (NvChad)
+
+### Environment
+- Arch Linux
