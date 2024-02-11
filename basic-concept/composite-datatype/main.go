@@ -28,6 +28,10 @@ func main(){
     fmt.Println("even array: ", j)
   }
 
+  for i:=0; i<len(warna); i++{
+    fmt.Println("Warna: ", warna[i])
+  }
+
   // Declaring slice
   var odds_slice []int = odds[1:3]
   for _, odds_slice_value := range odds_slice{
