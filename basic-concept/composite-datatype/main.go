@@ -13,6 +13,12 @@ func main(){
   odds[3] = 7
   odds[4] = 9
   even := [5]int{2,4,6,8,10}
+  var warna = make([]string, 5)
+  warna[0] = "Merah"
+  warna[1] = "Kuning"
+  warna[2] = "Hijau"
+  warna[3] = "Biru"
+  warna[4] = "Ungu"
   
   for i:= 0 ; i < len(odds); i++ {
     fmt.Println("odds array: ", odds[i])
