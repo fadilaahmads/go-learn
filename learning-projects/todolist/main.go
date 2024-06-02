@@ -1,16 +1,29 @@
 package main
 
 import (
+	"gotodolist/databases"
+	"gotodolist/routes"
+	"log"
+
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main(){
-  r := gin.Default()
-  r.GET("/", func(c *gin.Context){
-    c.JSON(200, gin.H{
-      "message":"Hello World",
-    })
-  })
+  // load env variables from .env
+  err := godotenv.Load()
+  if err != nil {
+    log.Fatal("Failed to load .env: ", err)
+  }
 
+  // initialize database
+  databases.Init()
+
+  // initialize gin router
+  r := gin.Default()
+
+  // setup routes
+  routes.SetupRoutes(r)
+  
   r.Run(":8080")
 }
