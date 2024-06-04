@@ -2,3 +2,4 @@
 
 # Exclude ELF executables
 *.elf
+.env
