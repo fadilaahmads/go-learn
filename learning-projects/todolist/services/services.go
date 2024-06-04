@@ -27,3 +27,12 @@ func GetTodos()([]models.Todo, error){
 
   return todos,nil
 }
+
+func GetTodosById(id int)([]models.Todo, error){
+  var todoById []models.Todo
+  if err := db.First(&todoById, id).Error; err != nil{
+    log.Printf("Error receiving todos: %v", err)
+    return nil, err
+  }
+  return todoById, nil
+}
