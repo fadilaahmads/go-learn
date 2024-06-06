@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"gotodolist/models"
 	"gotodolist/services"
 	"gotodolist/utils"
 	"log"
@@ -34,4 +35,18 @@ func GetTodoById(c *gin.Context){
     utils.ResponseWithError(c, http.StatusInternalServerError, err.Error())
   }
   utils.ResponseWithJSON(c, http.StatusOK, todo)
+}
+
+func CreateTodoHandler(c gin.Context){
+  var todo models.Todo
+  if err:= c.ShouldBindJSON(&todo); err =! nil{
+    utils.ResponseWithError(c, http.StatusBadRequest, "Invalid Input")
+  }
+
+  if err:= services.AddTodo(&todo); err != nil {
+    utils.ResponseWithError(c, http.StatusInternalServerError, "Could not create todo")
+    return
+  }
+
+  utils.ResponseWithJSON(c, http.StatusCreated, todo)
 }
