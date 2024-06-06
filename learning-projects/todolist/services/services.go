@@ -39,7 +39,7 @@ func GetTodosById(id int) ([]models.Todo, error) {
 	return todoById, nil
 }
 
-func AddTodo(todo models.Todo) error {
+func AddTodo(todo *models.Todo) error {
 	db := databases.GetDB()
 	result := db.Create(todo)
 	return result.Error
