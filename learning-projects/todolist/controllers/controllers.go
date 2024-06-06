@@ -37,10 +37,11 @@ func GetTodoById(c *gin.Context){
   utils.ResponseWithJSON(c, http.StatusOK, todo)
 }
 
-func CreateTodoHandler(c gin.Context){
+func CreateTodoHandler(c *gin.Context){
   var todo models.Todo
-  if err:= c.ShouldBindJSON(&todo); err =! nil{
+  if err:= c.ShouldBindJSON(&todo); err != nil{
     utils.ResponseWithError(c, http.StatusBadRequest, "Invalid Input")
+    return
   }
 
   if err:= services.AddTodo(&todo); err != nil {
