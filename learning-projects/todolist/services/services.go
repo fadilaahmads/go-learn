@@ -1,7 +1,7 @@
 package services
 
 import (
-	"fmt"
+	"errors"
 	"gotodolist/databases"
 	"gotodolist/models"
 	"log"
@@ -10,15 +10,9 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-/* var db *gorm.DB = databases.GetDB()   */
-
 func GetTodos() ([]models.Todo, error) {
 	var todos []models.Todo
-	db := databases.GetDB()
-	if db == nil {
-		log.Println("Database connection is not initialize")
-		return nil, fmt.Errorf("Database is not initialize")
-	}
+	db := databases.GetDB()	
 
 	// querying data
 	if err := db.Find(&todos).Error; err != nil {
@@ -29,18 +23,25 @@ func GetTodos() ([]models.Todo, error) {
 	return todos, nil
 }
 
-func GetTodosById(id int) ([]models.Todo, error) {
-	var todoById []models.Todo
+func GetTodosById(id int) (*models.Todo, error) {
+	var todoById models.Todo
 	db := databases.GetDB()
 	if err := db.First(&todoById, id).Error; err != nil {
 		log.Printf("Error receiving todos: %v", err)
 		return nil, err
 	}
-	return todoById, nil
+	return &todoById, nil
 }
 
 func AddTodo(todo *models.Todo) error {
 	db := databases.GetDB()
+
+  // check for duplicate title
+  var existingTodo models.Todo
+  if err := db.Where("title = ?", todo.Title).First(&existingTodo).Error; err != nil{
+    return errors.New("Todo already exists")
+  }
+
 	result := db.Create(todo)
 	return result.Error
 }
