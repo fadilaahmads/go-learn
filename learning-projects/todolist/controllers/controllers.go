@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -50,4 +49,24 @@ func CreateTodoHandler(c *gin.Context){
   }
 
   utils.ResponseWithJSON(c, http.StatusCreated, todo)
+}
+
+func UpdateTodoHandler(c *gin.Context){
+  var todo models.Todo 
+  todoId, err := strconv.Atoi(c.Param("id"))
+  if err != nil {
+    log.Println("failed to convert id to int: ", err)
+  }
+  todo.ID = todoId
+  todo.Title = c.Param("title")
+
+  if err := c.ShouldBindJSON(&todo); err != nil{
+    utils.ResponseWithError(c, http.StatusBadRequest, "Invalid input")
+  }
+  
+  if err := services.UpdateTodo(todo.ID, todo.Title); err != nil{
+    utils.ResponseWithJSON(c, http.StatusInternalServerError, "Could not update todo")
+  }
+
+  utils.ResponseWithJSON(c, http.StatusOK, todo)
 }
