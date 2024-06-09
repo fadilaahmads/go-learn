@@ -44,3 +44,13 @@ func AddTodo(todo *models.Todo) error {
 	result := db.Create(todo)
 	return result.Error
 }
+
+func UpdateTodo(id int, title string) error{
+  db := databases.GetDB()
+  var todo models.Todo
+  db.First(&todo)
+  todo.ID = id
+  todo.Title = title
+  result := db.Save(&todo)
+  return result.Error
+}
