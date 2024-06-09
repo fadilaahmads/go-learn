@@ -29,6 +29,11 @@ func GetTodoById(c *gin.Context){
     log.Panicln("Failed to convert ID")
     utils.ResponseWithError(c, http.StatusInternalServerError, err.Error())
   }
+
+  if err := utils.ValidateID(intTodoId); err != nil {
+    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
+    return
+  }
   todo, err := services.GetTodosById(intTodoId)
   if err != nil {
     utils.ResponseWithError(c, http.StatusInternalServerError, err.Error())
@@ -42,6 +47,13 @@ func CreateTodoHandler(c *gin.Context){
     utils.ResponseWithError(c, http.StatusBadRequest, "Invalid Input")
     return
   }
+
+  sanitizedTodo, err := utils.ValidateSanitizedTodo(todo.Title)
+  if err != nil {
+    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
+  }
+
+  todo.Title = sanitizedTodo
 
   if err:= services.AddTodo(&todo); err != nil {
     utils.ResponseWithError(c, http.StatusInternalServerError, "Could not create todo")
@@ -60,11 +72,21 @@ func UpdateTodoHandler(c *gin.Context){
   todo.ID = todoId
   todo.Title = c.Param("title")
 
+  if err := utils.ValidateID(todo.ID); err != nil{
+    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
+    return
+  }
+
+  sanitizedTitle, err := utils.ValidateSanitizedTodo(todo.Title)
+  if err != nil{
+    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
+  }
+
   if err := c.ShouldBindJSON(&todo); err != nil{
     utils.ResponseWithError(c, http.StatusBadRequest, "Invalid input")
   }
   
-  if err := services.UpdateTodo(todo.ID, todo.Title); err != nil{
+  if err := services.UpdateTodo(todo.ID, sanitizedTitle); err != nil{
     utils.ResponseWithJSON(c, http.StatusInternalServerError, "Could not update todo")
   }
 
