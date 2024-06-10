@@ -71,6 +71,7 @@ func UpdateTodoHandler(c *gin.Context){
   }
   todo.ID = todoId
   todo.Title = c.Param("title")
+  todo.Completed = c.Param("completed")
 
   if err := utils.ValidateID(todo.ID); err != nil{
     utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
@@ -91,4 +92,15 @@ func UpdateTodoHandler(c *gin.Context){
   }
 
   utils.ResponseWithJSON(c, http.StatusOK, todo)
+}
+
+func DeleteTodoHandler(c *gin.Context){
+  var todoId string = c.Param("id")
+  var intTodoId int = strconv.Atoi(todoId)
+
+  err := service.DeleteTodoHandler(intTodoId)
+  if err != nil {
+    utils.ResponseWithError(c, http.StatusInternalServerError, err.Error())
+  }
+  utils.ResponseWithJSON(c, http.StatusOK, "Todo successfully deleted")
 }
