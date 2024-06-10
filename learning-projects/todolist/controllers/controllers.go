@@ -65,29 +65,37 @@ func CreateTodoHandler(c *gin.Context){
 
 func UpdateTodoHandler(c *gin.Context){
   var todo models.Todo 
-  todoId, err := strconv.Atoi(c.Param("id"))
-  if err != nil {
-    log.Println("failed to convert id to int: ", err)
-  }
-  todo.ID = todoId
-  todo.Title = c.Param("title")
-  todo.Completed = c.Param("completed")
-
-  if err := utils.ValidateID(todo.ID); err != nil{
-    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
-    return
-  }
-
-  sanitizedTitle, err := utils.ValidateSanitizedTodo(todo.Title)
-  if err != nil{
-    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
-  }
-
+  // parsing request arguments to todo struct
   if err := c.ShouldBindJSON(&todo); err != nil{
     utils.ResponseWithError(c, http.StatusBadRequest, "Invalid input")
   }
+  // id check 
+  todoId, err := strconv.Atoi(c.Param("id"))
+  if err != nil {
+    log.Println("failed to convert id to int: ", err)
+    return
+  }
+
+  if err := utils.ValidateID(todoId); err != nil{
+    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
+    return
+  } 
+  todo.ID = todoId 
   
-  if err := services.UpdateTodo(todo.ID, sanitizedTitle); err != nil{
+  // title check
+  sanitizedTitle, err := utils.ValidateSanitizedTodo(c.Param("title"))
+  if err != nil{
+    utils.ResponseWithError(c, http.StatusBadRequest, err.Error())
+  }
+  todo.Title = sanitizedTitle
+
+  completedToBoolean, err := strconv.ParseBool(c.Param("completed"))
+  if err != nil{
+    utils.ResponseWithError(c, http.StatusInternalServerError, err.Error())
+  }
+  todo.Completed = completedToBoolean
+ 
+  if err := services.UpdateTodo(&todo.ID, &todo.Title, &todo.Completed); err != nil{
     utils.ResponseWithJSON(c, http.StatusInternalServerError, "Could not update todo")
   }
 
@@ -96,10 +104,12 @@ func UpdateTodoHandler(c *gin.Context){
 
 func DeleteTodoHandler(c *gin.Context){
   var todoId string = c.Param("id")
-  var intTodoId int = strconv.Atoi(todoId)
-
-  err := service.DeleteTodoHandler(intTodoId)
+  intTodoId, err := strconv.Atoi(todoId)
   if err != nil {
+    utils.ResponseWithError(c, http.StatusInternalServerError, err.Error())
+  }
+
+  if err := services.DeleteTodo(intTodoId); err != nil {
     utils.ResponseWithError(c, http.StatusInternalServerError, err.Error())
   }
   utils.ResponseWithJSON(c, http.StatusOK, "Todo successfully deleted")
