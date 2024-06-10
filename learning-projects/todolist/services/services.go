@@ -46,13 +46,13 @@ func AddTodo(todo *models.Todo) error {
 	return result.Error
 }
 
-func UpdateTodo(id int, title string, completed bool) error{
+func UpdateTodo(id *int, title *string, completed *bool) error{
   db := databases.GetDB()
   var todo models.Todo
   db.First(&todo)
-  todo.ID = id
-  todo.Title = title
-  todo.Completed = completed
+  todo.ID = *id
+  todo.Title = *title
+  todo.Completed = *completed
   result := db.Save(&todo)
   return result.Error
 }
