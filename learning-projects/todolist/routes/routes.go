@@ -12,4 +12,5 @@ func SetupRoutes(router *gin.Engine){
   router.GET("/todos/:id", controllers.GetTodoById)
   router.POST("/todos", controllers.CreateTodoHandler)
   router.POST("/todos/:id", controllers.UpdateTodoHandler)
+  router.DELETE("/todos/:id", controllers.DeleteTodoHandler)
  }
