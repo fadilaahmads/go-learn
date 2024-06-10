@@ -56,3 +56,12 @@ func UpdateTodo(id int, title string, completed bool) error{
   result := db.Save(&todo)
   return result.Error
 }
+
+func DeleteTodo(id int) error{
+  db := databases.GetDB()
+  var todo models.Todo 
+  todo.ID = id 
+
+  result := db.Delete(&todo)
+  return result.Error
+}
