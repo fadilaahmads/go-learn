@@ -20,3 +20,10 @@ func ValidateID(id int) error{
   }
   return nil
 }
+
+func ValidateCompletion(status int) error{
+  if status != 0 || status != 1 {
+    return errors.New("Completion must either 1 or 0")
+  }
+  return nil
+}
