@@ -7,11 +7,11 @@ import (
 
 func ValidateSanitizedTodo(title string) (string, error){ 
   if len(title) == 0 || len(title) > 255 {
-    return "", errors.New("title must be more than 0 character")
+    return "", errors.New("title must be between 0 and 255 characters")
   }
-  if len(title) > 255 {
-    return "", errors.New("title must be less than 255 characters")
-  }
+  // if len(title) > 255 {
+  //   return "", errors.New("title must be less than 255 characters")
+  // }
   sanitizedTitle := regexp.MustCompile(`[^\w\s\-\'.,]`).ReplaceAllString(title, "")
   
   return sanitizedTitle, nil
